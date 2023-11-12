@@ -10,19 +10,19 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: "pixijsPlayground: Index",
+      title: "pixijs Advanced Template",
       inject: true,
       chunks: ["index"],
       filename: "index.html",
     }),
     new HtmlWebpackPlugin({
-      title: "pixijsPlayground: Page2",
+      title: "pixijs Advanced Template",
       inject: true,
       chunks: ["page2"],
       filename: "page2.html",
     }),
     new HtmlWebpackPlugin({
-      title: "pixijsPlayground: Page3",
+      title: "pixijs Advanced Template",
       inject: true,
       chunks: ["page3"],
       filename: "page3.html",
