@@ -7,6 +7,7 @@ module.exports = {
     index: "./src/index.js",
     page2: "./src/page2.js",
     page3: "./src/page3.js",
+    page4: "./src/page4.js",
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -26,6 +27,12 @@ module.exports = {
       inject: true,
       chunks: ["page3"],
       filename: "page3.html",
+    }),
+    new HtmlWebpackPlugin({
+      title: "pixijs Advanced Template",
+      inject: true,
+      chunks: ["page4"],
+      filename: "page4.html",
     }),
   ],
   output: {
@@ -56,6 +63,10 @@ module.exports = {
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/i,
         type: "asset/resource",
+      },
+      {
+        test: /\.(glsl|frag|vert)$/i,
+        type: "asset/source",
       },
     ],
   },
