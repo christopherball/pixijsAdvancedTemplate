@@ -8,6 +8,7 @@ module.exports = {
     page2: "./src/page2.js",
     page3: "./src/page3.js",
     page4: "./src/page4.js",
+    page5: "./src/page5.js",
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -33,6 +34,12 @@ module.exports = {
       inject: true,
       chunks: ["page4"],
       filename: "page4.html",
+    }),
+    new HtmlWebpackPlugin({
+      title: "pixijs Advanced Template",
+      inject: true,
+      chunks: ["page5"],
+      filename: "page5.html",
     }),
   ],
   output: {
