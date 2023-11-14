@@ -11,8 +11,11 @@ import fragmentSrc from "./page4.frag";
 import vertexSrc from "./page4.vert";
 
 const app = new Application({ resizeTo: window });
-
 document.body.appendChild(app.view);
+if (process.env.NODE_ENV !== "production") {
+  // Included for non-production builds, powers PixiJS browser debug extension.
+  globalThis.__PIXI_APP__ = app;
+}
 
 // Build geometry.
 const geometry = new Geometry()

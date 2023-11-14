@@ -4,6 +4,11 @@ import bunnyImg from "./assets/bunny.png";
 
 const app = new Application({ background: "#1099bb", resizeTo: window });
 document.body.appendChild(app.view);
+if (process.env.NODE_ENV !== "production") {
+  // Included for non-production builds, powers PixiJS browser debug extension.
+  globalThis.__PIXI_APP__ = app;
+}
+
 const container = new Container();
 app.stage.addChild(container);
 

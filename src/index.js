@@ -3,6 +3,11 @@ import { Application, Graphics } from "pixi.js";
 
 const app = new Application({ antialias: true, resizeTo: window });
 document.body.appendChild(app.view);
+if (process.env.NODE_ENV !== "production") {
+  // Included for non-production builds, powers PixiJS browser debug extension.
+  globalThis.__PIXI_APP__ = app;
+}
+
 const graphics = new Graphics();
 
 // Rectangle
