@@ -1,4 +1,8 @@
 #version 300 es
+/*  OLD SYNTAX      MODERN SYNTAX   :   PERMISSION
+    uniform         uniform         :   read
+    attribute       in              :   read
+    varying         out             :   read / write    */
 
 in vec2 aVertexPosition;
 uniform mat3 translationMatrix;

@@ -1,4 +1,9 @@
 #version 300 es
+/*  OLD SYNTAX      MODERN SYNTAX   :   PERMISSION
+    uniform         uniform         :   read
+    varying         in              :   read
+    gl_FragColor    out             :   read / write    */
+
 precision highp float;
 
 out vec4 outColor;
