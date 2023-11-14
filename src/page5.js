@@ -38,7 +38,7 @@ const geometry = new Geometry()
       1, // v3 (bot left)
     ],
     2
-  ) // the size of the attribute
+  )
   .addIndex([0, 1, 2, 0, 2, 3]); // Defines two triangles based on the 4 coordinate pairs above to create a full-screen quad.
 
 const uniforms = {
