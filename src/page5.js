@@ -25,6 +25,20 @@ const geometry = new Geometry()
     ],
     2
   )
+  .addAttribute(
+    "aUvs",
+    [
+      0, // u0 (top left)
+      0, // v0 (top left)
+      1, // u1 (top right)
+      0, // v1 (top right)
+      1, // u2 (bot right)
+      1, // v2 (bot right)
+      0, // u3 (bot left)
+      1, // v3 (bot left)
+    ],
+    2
+  ) // the size of the attribute
   .addIndex([0, 1, 2, 0, 2, 3]); // Defines two triangles based on the 4 coordinate pairs above to create a full-screen quad.
 
 const uniforms = {

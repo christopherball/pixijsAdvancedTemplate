@@ -6,9 +6,10 @@
 
 precision highp float;
 
-out vec4 outColor;
 uniform vec3 iResolution;
 uniform float iTime;
+in vec2 vUvs;
+out vec4 outColor;
 
 // Based on: https://www.shadertoy.com/view/clfGW8
 void main() {
