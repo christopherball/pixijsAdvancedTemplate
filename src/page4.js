@@ -7,8 +7,9 @@ import {
   Texture,
   WRAP_MODES,
 } from "pixi.js";
-import fragmentSrc from "./page4.frag";
-import vertexSrc from "./page4.vert";
+import perlinSrc from "./assets/perlin.jpg";
+import fragmentSrc from "./shaders/page4.frag";
+import vertexSrc from "./shaders/page4.vert";
 
 const app = new Application({ resizeTo: window });
 document.body.appendChild(app.view);
@@ -50,7 +51,7 @@ const geometry = new Geometry()
   .addIndex([0, 1, 2, 0, 2, 3]);
 
 const uniforms = {
-  noise: Texture.from("https://pixijs.com/assets/perlin.jpg"),
+  noise: Texture.from(perlinSrc),
   time: 0,
 };
 // Make sure repeat wrap is used and no mipmapping.

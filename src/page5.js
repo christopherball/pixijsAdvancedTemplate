@@ -1,7 +1,7 @@
 import "./styles/style.css";
 import { Application, Shader, Geometry, Mesh } from "pixi.js";
-import fragmentSrc from "./page5.frag";
-import vertexSrc from "./page5.vert";
+import fragmentSrc from "./shaders/page5.frag";
+import vertexSrc from "./shaders/page5.vert";
 
 const app = new Application({ resizeTo: window });
 document.body.appendChild(app.view);

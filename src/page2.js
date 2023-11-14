@@ -1,6 +1,6 @@
 import "./styles/style.css";
 import { Application, Container, Texture, Sprite } from "pixi.js";
-import bunnyImg from "./assets/bunny.png";
+import bunnySrc from "./assets/bunny.png";
 
 const app = new Application({ background: "#1099bb", resizeTo: window });
 document.body.appendChild(app.view);
@@ -13,7 +13,7 @@ const container = new Container();
 app.stage.addChild(container);
 
 // Create a new texture
-const texture = Texture.from(bunnyImg);
+const texture = Texture.from(bunnySrc);
 
 // Create a 5x5 grid of bunnies
 for (let i = 0; i < 25; i++) {
