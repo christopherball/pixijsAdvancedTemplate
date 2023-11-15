@@ -1,15 +1,7 @@
 import "./styles/style.css";
-import {
-  Application,
-  Shader,
-  Geometry,
-  Mesh,
-  Texture,
-  WRAP_MODES,
-} from "pixi.js";
-import perlinSrc from "./assets/perlin.jpg";
+import { Application, Shader, Geometry, Mesh } from "pixi.js";
 import fragmentSrc from "./shaders/page4.frag";
-import vertexSrc from "./shaders/page4.vert";
+import vertexSrc from "./shaders/shared.vert";
 
 const app = new Application({ resizeTo: window });
 document.body.appendChild(app.view);
@@ -18,61 +10,46 @@ if (process.env.NODE_ENV !== "production") {
   globalThis.__PIXI_APP__ = app;
 }
 
-// Build geometry.
 const geometry = new Geometry()
   .addAttribute(
-    "aVertexPosition", // the attribute name
+    "aVertexPosition",
     [
-      -100,
-      -100, // x, y
-      100,
-      -100, // x, y
-      100,
-      100,
-      -100,
-      100,
-    ], // x, y
+      0, // x0 (top left)
+      0, // y0 (top left)
+      window.innerWidth, // x1 (top right)
+      0, // y1 (top right)
+      window.innerWidth, // x2 (bot right)
+      window.innerHeight, // y2 (bot right)
+      0, // x3 (bot left)
+      window.innerHeight, // y3 (bot left)
+    ],
     2
-  ) // the size of the attribute
+  )
   .addAttribute(
-    "aUvs", // the attribute name
+    "aUvs",
     [
-      0,
-      0, // u, v
-      1,
-      0, // u, v
-      1,
-      1,
-      0,
-      1,
-    ], // u, v
+      0, // u0 (top left)
+      0, // v0 (top left)
+      1, // u1 (top right)
+      0, // v1 (top right)
+      1, // u2 (bot right)
+      1, // v2 (bot right)
+      0, // u3 (bot left)
+      1, // v3 (bot left)
+    ],
     2
-  ) // the size of the attribute
-  .addIndex([0, 1, 2, 0, 2, 3]);
+  )
+  .addIndex([0, 1, 2, 0, 2, 3]); // Defines two triangles based on the 4 coordinate pairs above to create a full-screen quad.
 
 const uniforms = {
-  noise: Texture.from(perlinSrc),
-  time: 0,
+  iTime: 0, // Total shader playback time (in seconds).
+  iResolution: [window.innerWidth, window.innerHeight, 1.0], // Viewport resolution (in pixels).
 };
-// Make sure repeat wrap is used and no mipmapping.
 
-uniforms.noise.baseTexture.wrapMode = WRAP_MODES.REPEAT;
-uniforms.noise.baseTexture.mipmap = false;
-
-// Build the shader and the quad.
 const shader = Shader.from(vertexSrc, fragmentSrc, uniforms);
 const quad = new Mesh(geometry, shader);
-
-quad.position.set(400, 300);
-quad.scale.set(2);
-
 app.stage.addChild(quad);
 
-// start the animation..
-let time = 0;
-
 app.ticker.add((delta) => {
-  time += 1 / 60;
-  quad.shader.uniforms.time = time;
-  quad.scale.set(Number(Math.cos(time)) + 2, Number(Math.sin(time * 0.7)) + 2);
+  shader.uniforms.iTime += delta / 60;
 });
