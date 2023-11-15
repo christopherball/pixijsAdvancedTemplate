@@ -9,7 +9,7 @@ precision highp float;
 uniform vec3 iResolution;
 uniform float iTime;
 in vec2 vUvs;
-out vec4 outColor;
+out vec4 fragmentColor;
 
 // Based on: https://www.shadertoy.com/view/clfGW8
 void main() {
@@ -22,5 +22,5 @@ void main() {
     for (O *= 0.f; i < 12.f; O += length(min(r.y / abs(F), r)) / 3e2f * (cos(++t + i + vec4(0, 1, 2, 0)) * l + l)) {
         F *= mat2(cos(l * .2f - i++ * --t / 1e2f + vec4(0, 33, 11, 0)));
     }
-    outColor = O;
+    fragmentColor = O;
 }

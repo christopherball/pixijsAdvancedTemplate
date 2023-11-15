@@ -9,7 +9,7 @@ precision highp float;
 uniform vec3 iResolution;
 uniform float iTime;
 in vec2 vUvs;
-out vec4 outColor;
+out vec4 fragmentColor;
 
 // Based on: https://www.shadertoy.com/view/tsXBzS
 vec3 palette(float d) {
@@ -46,7 +46,6 @@ vec4 rm(vec3 ro, vec3 rd) {
         if (d > 100.f) {
             break;
         }
-        //col+=vec3(0.6,0.8,0.8)/(400.*(d));
         col += palette(length(p) * .1f) / (400.f * (d));
         t += d;
     }
@@ -59,12 +58,9 @@ void main() {
     vec3 cf = normalize(-ro);
     vec3 cs = normalize(cross(cf, vec3(0.f, 1.f, 0.f)));
     vec3 cu = normalize(cross(cf, cs));
-
     vec3 uuv = ro + cf * 3.f + uv.x * cs + uv.y * cu;
-
     vec3 rd = normalize(uuv - ro);
-
     vec4 col = rm(ro, rd);
 
-    outColor = col;
+    fragmentColor = col;
 }
