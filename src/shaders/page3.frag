@@ -4,7 +4,9 @@
     varying         in              :   read
     gl_FragColor    out             :   read / write    */
 
+#ifdef GL_ES
 precision highp float;
+#endif
 
 uniform vec3 iResolution;
 uniform float iTime;
